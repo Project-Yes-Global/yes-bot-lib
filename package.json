@@ -1,6 +1,6 @@
 {
   "name": "yes-bot-lib",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "a bot library for internal projects",
   "type": "module",
   "main": "index.ts",
