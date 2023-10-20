@@ -14,14 +14,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/chernobelenkiy/secret-league-bot.git"
+    "url": "git+https://github.com/Project-Yes-Global/yes-bot-lib.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/chernobelenkiy/secret-league-bot/issues"
+    "url": "https://github.com/Project-Yes-Global/yes-bot-lib/issues"
   },
-  "homepage": "https://github.com/chernobelenkiy/secret-league-bot#readme",
+  "homepage": "https://github.com/Project-Yes-Global/yes-bot-lib#readme",
   "devDependencies": {
     "tsup": "^7.2.0"
   },
