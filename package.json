@@ -1,6 +1,6 @@
 {
   "name": "yes-bot-lib",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "a bot library for internal projects",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
