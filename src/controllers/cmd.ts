@@ -23,7 +23,6 @@ class CommandStorageManager {
   }
 }
 
-const COMMANDS = ['/start']
 const storage = new CommandStorageManager();
 
 export class CommandsManager implements ICommandsManager {
@@ -34,11 +33,10 @@ export class CommandsManager implements ICommandsManager {
   }
 
   isCommand(cmd: string) {
-    return COMMANDS.includes(cmd);
+    return /^\/.*/.test(cmd);
   }
 
   canCommand(ctx: TContext) {
-    console.log(this.storage);
     return !!this.storage.get(ctx.data);
   }
 

@@ -9,8 +9,9 @@ export type TMessage = {
 
 export type TChatData = {
   chatId: number;
-  fromId: number | undefined;
-  text: string;
+  text?: string;
+  fromId?: number;
+  messageId?: number;
 }
 
 export type TContext = {

@@ -111,8 +111,6 @@ export class PromptManager implements IPromptManager {
 
       if (error.code === 'context_length_exceeded') {
         this.storage.slice(ctx.data);
-        console.log('slicing....');
-        console.log(this.storage);
         this.generate(ctx.prompt.createPrompts(ctx));
       }
     }
