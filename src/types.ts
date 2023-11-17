@@ -33,7 +33,7 @@ export interface IUserAccess {
 }
 
 export interface IBotController {
-  bot: TelegramBot;
+  telegram: TelegramBot;
   sendMessage(msg: TelegramBot.Message, response: string): Promise<void>;
   isCommand(ctx: TContext): boolean;
 }

@@ -23,13 +23,14 @@ export class YesBot {
   }
 
   private subscribe() {
-    this.bot.on('message', this.onMessage);
-    this. bot.on('callback_query', this.onCallbackQuery);
+    const { bot, config } = this;
+    bot.on('message', this.onMessage.bind(this));
+    bot.on('callback_query', this.onCallbackQuery.bind(this));
 
-    if (this.config.commands?.length > 0) {
-      this.config.commands.forEach(c => {
-        this.bot.onText(new RegExp(`\/${c.id}`), (msg) => {
-          const ctx = createContext(this.bot, this.config, msg);
+    if (config.commands?.length > 0) {
+      config.commands.forEach(c => {
+        bot.onText(new RegExp(`\/${c.id}`), (msg) => {
+          const ctx = createContext(bot, config, msg);
           ctx.cmd.command(ctx, c);
         });
       });

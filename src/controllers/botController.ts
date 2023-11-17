@@ -2,14 +2,14 @@ import TelegramBot from 'node-telegram-bot-api';
 import { IBotController, TContext } from '../types';
 
 export class BotController implements IBotController{
-  public bot: TelegramBot;
+  public telegram: TelegramBot;
 
   constructor(bot: TelegramBot) {
-    this.bot = bot;
+    this.telegram = bot;
   } 
 
   async sendMessage(msg: TelegramBot.Message, response: string) {
-    await this.bot.sendMessage(
+    await this.telegram.sendMessage(
       msg.chat.id,
       response,
       { reply_to_message_id: msg.message_id, parse_mode: 'HTML' }
