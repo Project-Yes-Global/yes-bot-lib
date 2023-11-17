@@ -70,6 +70,7 @@ export class PromptManager implements IPromptManager {
       apiKey: key,
     });
     this.openai = new OpenAIApi(configuration);
+    this.config = config;
   }
 
   saveMessage(ctx: TContext, role: TRole = 'user', text: string) {
