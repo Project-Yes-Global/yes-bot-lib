@@ -1,9 +1,4 @@
 export {
-  ICommandsManager,
-  IPromptManager,
-  ISystemPromptManager,
-  IUserAccess,
-  ICommand,
   TRole,
   TContext,
   TChatData,

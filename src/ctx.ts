@@ -14,7 +14,7 @@ export const createContext = (bot: TelegramBot, config: YesBotConfig, msg: Teleg
     msg
   },
   prompts: [],
-  userAccess: createUserAccess(msg),
+  userAccess: createUserAccess(config, msg),
   cmd: new CommandsManager(),
   systemPrompt: new SystemPromptManager(config.defaultPrompt),
   prompt: new PromptManager(config.keys.openai, config.openai),

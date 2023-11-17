@@ -75,6 +75,7 @@ export type YesBotConfig = {
   callbacks: {
     onMessage?: (ctx: TContext) => void;
     onCallbackQuery?: (ctx: TContext, query: TelegramBot.CallbackQuery) => void;
+    onUserAccess?: (hashTags: { [key: string]: boolean }, msg: TelegramBot.Message) => any;
   },
   keys: {
     openai: string;
