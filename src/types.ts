@@ -74,5 +74,6 @@ export type YesBotConfig = {
   defaultPrompt: string;
   callbacks: {
     onMessage?: (ctx: TContext) => void;
+    onCallbackQuery?: (ctx: TContext, query: TelegramBot.CallbackQuery) => void;
   }
 }

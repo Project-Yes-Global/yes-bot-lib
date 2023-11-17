@@ -61,6 +61,12 @@ export class YesBot {
   private async onCallbackQuery(query: TelegramBot.CallbackQuery) {
     if (!query.message || !query.data) return;
     const ctx = createContext(this.bot, this.config, query.message);
+
+    if (this.config.callbacks.onCallbackQuery) {
+      this.config.callbacks.onCallbackQuery(ctx, query);
+      return;
+    }
+    
     const command = this.config.commands?.find(c => c.id === query.data);
     command && ctx.cmd.command(ctx,command);
   }
