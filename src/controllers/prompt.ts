@@ -1,6 +1,6 @@
 import { Configuration, OpenAIApi } from 'openai';
 import { removeHashtags } from '../helpers';
-import { TMessage, TRole, TContext, TChatData, IPromptManager } from '../types';
+import { TMessage, TRole, TContext, TChatData, IPromptManager, YesBotConfig } from '../types';
 
 const LIMIT = 20;
 
@@ -58,14 +58,19 @@ export class MessageStorageManager {
   }
 }
 
-const configuration = new Configuration({
-  apiKey: process.env.OPENAI_API_KEY,
-});
-const openai = new OpenAIApi(configuration);
 const storage = new MessageStorageManager();
 
 export class PromptManager implements IPromptManager {
   private storage: MessageStorageManager = storage;
+  private openai: OpenAIApi;
+  private config: YesBotConfig['openai'];
+
+  constructor(key: string, config: YesBotConfig['openai']) {
+    const configuration = new Configuration({
+      apiKey: key,
+    });
+    this.openai = new OpenAIApi(configuration);
+  }
 
   saveMessage(ctx: TContext, role: TRole = 'user', text: string) {
     this.storage.add(ctx.data, removeHashtags(text), role);
@@ -91,15 +96,14 @@ export class PromptManager implements IPromptManager {
 
   generate = async (ctx: TContext) => {
     try {
-      const completion = await openai.createChatCompletion({
-        model: "gpt-4",
+      const completion = await this.openai.createChatCompletion({
+        model: this.config.model || 'gpt-4-1106-preview',
         messages: ctx.prompts,
         temperature: 0.4,
       });
       const response = completion.data.choices[0].message?.content;
       if (!response) return; 
 
-      console.log('response: ', response);
       this.saveMessage(ctx, 'assistant', response);
       return response;
     } catch(error) {

@@ -4,12 +4,11 @@ import { createContext } from './ctx';
 import { YesBotConfig } from './types'
 
 export class YesBot {
-  apiKey: string;
   config: YesBotConfig;
   bot: TelegramBot;
 
-  constructor(apiKey: string, config: YesBotConfig) {
-    this.bot = new TelegramBot(apiKey, { polling: true });
+  constructor(config: YesBotConfig) {
+    this.bot = new TelegramBot(config.keys.telegram, { polling: true });
     this.config = config;
   }
 

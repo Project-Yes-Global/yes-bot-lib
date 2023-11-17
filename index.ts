@@ -1,7 +1,4 @@
 export {
-  CommandsManager,
-  PromptManager,
-  SystemPromptManager,
   ICommandsManager,
   IPromptManager,
   ISystemPromptManager,
@@ -11,6 +8,6 @@ export {
   TContext,
   TChatData,
   TMessage,
-  createChatSettings,
-  extractHashtags,
+  YesBot,
+  YesBotConfig
 } from './src';

@@ -75,5 +75,12 @@ export type YesBotConfig = {
   callbacks: {
     onMessage?: (ctx: TContext) => void;
     onCallbackQuery?: (ctx: TContext, query: TelegramBot.CallbackQuery) => void;
+  },
+  keys: {
+    openai: string;
+    telegram: string;
+  },
+  openai: {
+    model?: string;
   }
 }
