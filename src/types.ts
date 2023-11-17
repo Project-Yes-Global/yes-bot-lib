@@ -12,6 +12,7 @@ export type TChatData = {
   text?: string;
   fromId?: number;
   messageId?: number;
+  msg?: TelegramBot.Message;
 }
 
 export type TContext = {
@@ -21,7 +22,7 @@ export type TContext = {
   prompt: IPromptManager;
   cmd: ICommandsManager;
   prompts: TMessage[];
-  bot: TelegramBot;
+  bot: IBotController;
 }
 
 export interface IUserAccess {
@@ -29,6 +30,12 @@ export interface IUserAccess {
   channel?: boolean;
   canReply: boolean;
   canReplyToUser?: boolean;
+}
+
+export interface IBotController {
+  bot: TelegramBot;
+  sendMessage(msg: TelegramBot.Message, response: string): Promise<void>;
+  isCommand(ctx: TContext): boolean;
 }
 
 export interface IPromptManager {
@@ -53,10 +60,19 @@ export interface ICommandsManager {
   resetCommand(ctx: TContext): void;
   canCommand(ctx: TContext): boolean;
   isCommand(cmd: string): boolean;
-  command(ctx: TContext, cmd?: string): void;
+  command(ctx: TContext, cmd: ICommand): void;
 }
 
 export interface ICommand {
+  name: string;
+  id: string;
   execute(ctx: TContext, cmd?: string): void;
 }
 
+export type YesBotConfig = {
+  commands: ICommand[];
+  defaultPrompt: string;
+  callbacks: {
+    onMessage?: (ctx: TContext) => void;
+  }
+}

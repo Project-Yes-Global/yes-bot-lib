@@ -1,4 +1,4 @@
-import { ICommandsManager, TContext, TChatData } from '../types';
+import { ICommandsManager, TContext, TChatData, ICommand } from '../types';
 
 class CommandStorageManager {
   private storage: Map<string, string> = new Map();
@@ -28,8 +28,8 @@ const storage = new CommandStorageManager();
 export class CommandsManager implements ICommandsManager {
   protected storage: CommandStorageManager = storage;
 
-  command(_: TContext, cmd: string) {
-    throw new Error(`Method not implemented. Command: ${cmd}`);
+  command(ctx: TContext, command: ICommand) {
+    command.execute(ctx);
   }
 
   isCommand(cmd: string) {
